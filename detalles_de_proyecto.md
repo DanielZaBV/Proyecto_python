@@ -4,8 +4,8 @@ Descripción:
 Este proyecto consiste en un paquete de Python para realizar análisis de colores en imágenes espaciales. Proporciona herramientas para generar imágenes de muestra, analizar colores en imágenes mediante valores del 0 al 1 en un archivo y generar informes sobre la distribución de colores en diferentes áreas de una imagen.
 
 Componentes:
-- `generate_image.py`: Script para generar imágenes de muestra.
-- `analyze.py`: Módulo para realizar análisis de colores en imágenes.
+- `data`: Carpeta donde se guardan los archivos con los que se trabajará
+- `scripts`: Módulo para realizar análisis de colores en imágenes.
 - `utils`: Módulo con funciones de utilidad para el paquete.
 - `tests`: Carpeta con pruebas unitarias para el paquete.
 - `docs`: Carpeta para documentación del proyecto.
