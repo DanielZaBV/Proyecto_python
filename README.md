@@ -16,6 +16,6 @@ Realizar el Análisis de Colores
 
 Una vez que tengas la imagen de muestra, puedes realizar un análisis de colores espaciales. Por ejemplo:
 ```bash
-python -m Analisis_coloriespaciales data/selected_colors.txt 31622 31622
+python -m Analisis_coloriespaciales .\Analisis_coloriespaciales\data\selected_colors.txt 31622 31622
 ```
 Esto analizará los colores en la imagen utilizando los datos del archivo selected_colors.txt y generará un informe de análisis.
