@@ -1,6 +1,7 @@
 # __main__.py
 from Analisis_coloriespaciales.procesador_de_imagen import cargar_y_dividir_imagen, procesar_bloque
 from Analisis_coloriespaciales.utils import guardar_resultados
+from Analisis_coloriespaciales.analisis_color import desnormalizar_valores, agrupar_y_normalizar_colores
 import dask
 import numpy as np
 from PIL import Image
@@ -64,6 +65,9 @@ def main():
 
     # Guardar resultados
     guardar_resultados(selected_color_positions)
+    valores_normalizados = [float(valor) for valor in selected_color_positions]
+    colores_rgb = desnormalizar_valores(valores_normalizados, width, height)
+    colores_agrupados = agrupar_y_normalizar_colores(colores_rgb, umbral)
 
 if __name__ == "__main__":
     main()
