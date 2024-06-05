@@ -1,7 +1,7 @@
-# tests/test_analyze.py
-
 import unittest
 from Analisis_coloriespaciales.scripts.analisis_color import merge_similar_colors, round_color_value
+from Analisis_coloriespaciales.scripts.generador_de_imagen import generate_image
+from pathlib import Path
 
 class TestAnalyze(unittest.TestCase):
     def test_merge_similar_colors(self):
@@ -16,6 +16,12 @@ class TestUtils(unittest.TestCase):
         rounded = round_color_value(28, round_to=10)
         self.assertEqual(rounded, 30)
 
+class TestGenerateImage(unittest.TestCase):
+    def test_generate_sample_image(self):
+        # Comprueba si la imagen se genera correctamente
+        generate_image("test_image.png", width=100, height=100)
+        # Verifica si la imagen existe
+        self.assertTrue(Path("test_image.png").is_file())
 
 
 if __name__ == '__main__':
