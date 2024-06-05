@@ -1,3 +1,9 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+
 def desnormalizar_valores(valores_normalizados, width, height):
     colores_rgb = []
     for valor in valores_normalizados:
@@ -44,3 +50,36 @@ def agrupar_y_normalizar_colores(colores_rgb, umbral=20):
         colores_normalizados.append((r_promedio, g_promedio, b_promedio))
     
     return colores_normalizados
+
+def agrupar_colores_por_clusters(colores_normalizados, n_clusters):
+    kmeans = KMeans(n_clusters=n_clusters, random_state=42)
+    clusters = kmeans.fit_predict(colores_normalizados)
+    return clusters, kmeans.cluster_centers_
+
+def analizar_distribucion_colores(clusters, colores_normalizados):
+    unique, counts = np.unique(clusters, return_counts=True)
+    color_distribution = dict(zip(unique, counts))
+    
+    for cluster in color_distribution.keys():
+        indices = np.where(clusters == cluster)
+        colores_en_cluster = colores_normalizados[indices]
+        print(f"Cluster {cluster}:")
+        print(f"  Cantidad de Colores: {color_distribution[cluster]}")
+        print(f"  Colores: {colores_en_cluster}")
+
+    return color_distribution
+
+def visualizar_clusters(image_shape, clusters):
+    clustered_image = clusters.reshape(image_shape[:2])
+    plt.figure(figsize=(10, 10))
+    plt.imshow(clustered_image, cmap='viridis')
+    plt.title('Segmentación de la Imagen en Clusters de Colores')
+    plt.axis('off')
+    plt.show()
+
+def plot_color_distribution(color_distribution):
+    plt.bar(color_distribution.keys(), color_distribution.values())
+    plt.xlabel('Cluster')
+    plt.ylabel('Frecuencia')
+    plt.title('Distribución de Colores en Cada Cluster')
+    plt.show()
